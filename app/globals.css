@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.bg_sidebar {
+  background: rgb(181, 72, 147);
+  background: linear-gradient(
+    90deg,
+    rgba(181, 72, 147, 1) 0%,
+    rgba(223, 110, 150, 1) 100%
+  );
+}
+
+/* Add this to your CSS file */
+.bg_sidebar::-webkit-scrollbar {
+  width: 6px; /* Decrease width of scrollbar */
+}
+
+.bg_sidebar::-webkit-scrollbar-thumb {
+  background-color: gray; /* Set color to pink-500 */
+  border-radius: 10px;
+}
+
+.bg_sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
