@@ -7,6 +7,7 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 import { IoChatbubblesOutline } from "react-icons/io5";
 import { MdOutlineMailOutline } from "react-icons/md";
 import Image from "next/image";
+import Link from "next/link";
 
 const Sidebar = () => {
     const [activeMenu, setActiveMenu] = useState(null);
@@ -14,20 +15,20 @@ const Sidebar = () => {
     const [hoveredMenu, setHoveredMenu] = useState(null);
 
     // Set sidebar default state based on screen size
-    useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth <= 768) {
-                setIsSidebarOpen(false);
-            } else {
-                setIsSidebarOpen(true);
-            }
-        };
+    // useEffect(() => {
+    //     const handleResize = () => {
+    //         if (window.innerWidth <= 768) {
+    //             setIsSidebarOpen(false);
+    //         } else {
+    //             setIsSidebarOpen(true);
+    //         }
+    //     };
 
-        handleResize();
-        window.addEventListener("resize", handleResize);
+    //     handleResize();
+    //     window.addEventListener("resize", handleResize);
 
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
+    //     return () => window.removeEventListener("resize", handleResize);
+    // }, []);
 
     const toggleMenu = (index) => {
         setActiveMenu((prev) => (prev === index ? null : index)); // Toggle or close other menus
@@ -107,13 +108,13 @@ const Sidebar = () => {
                                     >
                                         <div className="pt-2 space-y-2 bg-[#818181]">
                                             {links.map((link, subIndex) => (
-                                                <a
+                                                <Link
                                                     key={subIndex}
-                                                    href="#"
+                                                    href={link.path}
                                                     className="block px-4 py-2 text-sm text-gray-300 hover:bg-[#545454] hover:text-white"
                                                 >
                                                     {link.name}
-                                                </a>
+                                                </Link>
                                             ))}
                                         </div>
                                     </div>
@@ -121,13 +122,13 @@ const Sidebar = () => {
                                     hoveredMenu === index && (
                                         <div className="absolute left-16 top-0 mt-2 w-48 z-10 bg-[#666666] p-2 shadow-lg">
                                             {links.map((link, subIndex) => (
-                                                <a
+                                                <Link
                                                     key={subIndex}
-                                                    href="#"
+                                                    href={link.path}
                                                     className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white"
                                                 >
                                                     {link.name}
-                                                </a>
+                                                </Link>
                                             ))}
                                         </div>
                                     )
