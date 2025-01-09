@@ -49,12 +49,12 @@ const AvailTable = () => {
                                 <td className="px-6 py-4">
                                     <span
                                         className={`px-3 py-1 text-white text-xs font-semibold ${item.status === "Completed"
-                                            ? "bg-green-400"
+                                            ? "bg-green-500"
                                             : item.status === "Pending"
-                                                ? "bg-yellow-400"
+                                                ? "bg-yellow-500"
                                                 : item.status === "Scheduled"
-                                                    ? "bg-blue-400"
-                                                    : "bg-red-400"
+                                                    ? "bg-blue-500"
+                                                    : "bg-red-500"
                                             }`}
                                     >
                                         {item.status}

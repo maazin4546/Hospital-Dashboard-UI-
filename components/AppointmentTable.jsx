@@ -46,8 +46,8 @@ const data = [
 
 const AppointmentTable = () => {
     return (
-        <div className="flex justify-center items-center">
-            <div className="bg-white w-[977px] relative overflow-x-auto shadow-md p-6 mt-8">
+        <div className="flex justify-center items-center p-6 md:p-0">
+            <div className="bg-white w-[500px] md:w-[977px] relative overflow-x-auto shadow-md p-6 mt-6 md:mt-8">
                 <h1 className="text-2xl text-pink-500 mb-4">Appointments</h1>
                 <table className="w-full text-sm text-left text-gray-600 bg-gray-100 rounded-md border border-gray-300 border-collapse">
                     <thead className="text-sm font-semibold shadow-md bg-white text-gray-700 border-b border-gray-300">
@@ -80,12 +80,12 @@ const AppointmentTable = () => {
                                 <td className="px-6 py-4">
                                     <span
                                         className={`px-3 py-1 text-white text-xs font-semibold ${item.status === "Completed"
-                                            ? "bg-green-400"
+                                            ? "bg-green-500"
                                             : item.status === "Pending"
-                                                ? "bg-yellow-400"
+                                                ? "bg-yellow-500"
                                                 : item.status === "Scheduled"
-                                                    ? "bg-blue-400"
-                                                    : "bg-red-400"
+                                                    ? "bg-blue-500"
+                                                    : "bg-red-500"
                                             }`}
                                     >
                                         {item.status}

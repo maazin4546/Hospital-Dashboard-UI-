@@ -1,6 +1,6 @@
 "use client";
 import { Sidebar_menu } from "@/lib/data";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { FaArrowLeftLong, FaMobileScreen } from "react-icons/fa6";
 import { FaLongArrowAltRight } from "react-icons/fa";
@@ -8,11 +8,26 @@ import { IoChatbubblesOutline } from "react-icons/io5";
 import { MdOutlineMailOutline } from "react-icons/md";
 import Image from "next/image";
 
-
 const Sidebar = () => {
     const [activeMenu, setActiveMenu] = useState(null);
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true); // State to control sidebar visibility
-    const [hoveredMenu, setHoveredMenu] = useState(null); // Track hovered menu for tooltip
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [hoveredMenu, setHoveredMenu] = useState(null);
+
+    // Set sidebar default state based on screen size
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth <= 768) {
+                setIsSidebarOpen(false);
+            } else {
+                setIsSidebarOpen(true);
+            }
+        };
+
+        handleResize();
+        window.addEventListener("resize", handleResize);
+
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     const toggleMenu = (index) => {
         setActiveMenu((prev) => (prev === index ? null : index)); // Toggle or close other menus
@@ -23,18 +38,18 @@ const Sidebar = () => {
     };
 
     return (
-        <div className="flex">
+        <div className="flex relative">
             {/* Sidebar */}
             <div
-                className={`bg_sidebar flex flex-col h-full ${isSidebarOpen ? "w-64" : "w-16"
-                    } text-white transition-all duration-300 ease-in-out relative`}
+                className={`bg_sidebar fixed top-0 left-0 z-50 flex flex-col h-full ${isSidebarOpen ? "w-64 overflow-y-auto" : "w-16"} text-white transition-all duration-300 ease-in-out`}
             >
+
                 {/* Toggle Button */}
                 <button className="flex items-center justify-end p-4 text-gray-300">
                     {!isSidebarOpen ? (
-                        <FaLongArrowAltRight fontSize={24} onClick={handleSidebarToggle}/>
+                        <FaLongArrowAltRight fontSize={24} onClick={handleSidebarToggle} />
                     ) : (
-                        <FaArrowLeftLong fontSize={24} onClick={handleSidebarToggle}/>
+                        <FaArrowLeftLong fontSize={24} onClick={handleSidebarToggle} />
                     )}
                 </button>
 
@@ -43,7 +58,7 @@ const Sidebar = () => {
                     className={`flex items-center justify-start h-16 cursor-pointer ${isSidebarOpen ? "pt-1 pl-4" : "justify-center"
                         }`}
                 >
-                    <Image src="/assets/main_logo.png" width={60} height={100} alt="Logo"/>
+                    <Image src="/assets/main_logo.png" width={60} height={100} alt="Logo" />
                     {isSidebarOpen && (
                         <h1 className="text-4xl ml-2">ProClinic</h1>
                     )}
@@ -104,7 +119,7 @@ const Sidebar = () => {
                                     </div>
                                 ) : (
                                     hoveredMenu === index && (
-                                        <div className="absolute left-14 top-0 mt-2 w-48 z-10 bg-[#666666] p-2 shadow-lg">
+                                        <div className="absolute left-16 top-0 mt-2 w-48 z-10 bg-[#666666] p-2 shadow-lg">
                                             {links.map((link, subIndex) => (
                                                 <a
                                                     key={subIndex}
@@ -121,9 +136,8 @@ const Sidebar = () => {
                         );
                     })}
 
-                    {/* Footer Section */}
                     <div
-                        className={`mt-4 flex-col gap-3 bg-[#ba5589a4] p-4 ${!isSidebarOpen ? "hidden" : "flex"
+                        className={`mt-4 flex-col gap-3 py-10 px-4 bg-[#ba5589a4] p-4 ${!isSidebarOpen ? "hidden" : "flex"
                             }`}
                     >
                         <div className="flex space-x-2">

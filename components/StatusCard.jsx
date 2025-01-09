@@ -6,9 +6,9 @@ import { PiCurrencyDollarSimple } from "react-icons/pi";
 
 const StatusCard = () => {
     return (
-        <div className='mt-12 flex justify-center items-center gap-3'>
+        <div className='mt-12 flex flex-wrap justify-center items-center gap-1 md:gap-3'>
 
-            <div className="flex items-center space-x-6 w-80 rounded-sm bg-white mt-8 p-4" style={{ boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px;" }}>
+            <div className="flex items-center space-x-6 w-80 rounded-sm bg-white mt-8 p-4 shadow-md">
                 <MdOutlinePerson4
                     fontSize={60} // Increase the font size
                     className="text-pink-500 border border-pink-500 rounded-full p-4"
@@ -24,7 +24,7 @@ const StatusCard = () => {
                 </div>
             </div>
 
-            <div className="flex items-center space-x-6 w-80 rounded-sm bg-white mt-8 p-4" style={{ boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px;" }}>
+            <div className="flex items-center space-x-6 w-80 rounded-sm bg-white mt-8 p-4 shadow-md">
                 <IoBarChartOutline
                     fontSize={60} // Increase the font size
                     className="text-green-600 border border-green-600 rounded-full p-4"
@@ -40,7 +40,7 @@ const StatusCard = () => {
                 </div>
             </div>
 
-            <div className="flex items-center space-x-6 w-80 rounded-sm bg-white mt-8 p-4" style={{ boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px;" }}>
+            <div className="flex items-center space-x-6 w-80 rounded-sm bg-white mt-8 p-4 shadow-md">
                 <PiCurrencyDollarSimple
                     fontSize={60} // Increase the font size
                     className="text-orange-600 border border-orange-600 rounded-full p-4"

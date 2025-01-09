@@ -10,20 +10,20 @@ import StatusCard from '@/components/StatusCard';
 
 const page = () => {
   return (
-    <div className="flex overflow-hidden">
+    <div className="flex">
       <Sidebar />
-      <div className="flex-1 bg-[#e6f1ed] pb-12">
+      <div className="flex-1 pb-12 ml-16">
         <Navbar />
         <StatusCard />
 
-        <div className='flex justify-center items-center mt-6 gap-5'>
+        <div className='flex flex-col md:flex-row justify-center items-center mt-6 gap-5 p-6 md:p-0'>
           <Graph />
           <BarGraph />
         </div>
 
         <AppointmentTable />
 
-        <div className='flex justify-center items-center mt-6 gap-5'>
+        <div className='flex flex-col md:flex-row justify-center items-center mt-6 gap-5 p-6 md:p-0'>
           <PieChart />
           <AvailTable />
         </div>
