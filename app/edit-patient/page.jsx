@@ -1,40 +1,18 @@
 "use client"
 import Navbar from '@/components/Navbar';
-import React, { useState } from 'react';
 
-const AddPatientForm = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        dob: '',
-        age: '',
-        phone: '',
-        email: '',
-        gender: '',
-        address: '',
-        file: null,
-        confirm: false,
-    });
 
-    const handleChange = (e) => {
-        const { name, value, type, checked, files } = e.target;
-        setFormData({
-            ...formData,
-            [name]: type === 'checkbox' ? checked : type === 'file' ? files[0] : value,
-        });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(formData);
-    };
+const editPatient = () => {
 
     return (
-        <>
-            <Navbar title={"Add Patient"} path={" / Patients / Add Patient "} />
+        <div>
+            <Navbar title={"Edit Patient"} path={" / Patients / Edit Patient"} />
+
             <div className='mt-4 md:mt-16 p-2 md:p-6'>
                 <div className="w-full mx-auto bg-white p-6 rounded-sm shadow-md">
-                    <h2 className="text-2xl text-pink-500 mb-4">Add Patient</h2>
-                    <form onSubmit={handleSubmit} className="space-y-4">
+                    <h2 className="text-2xl text-pink-500 mb-4">Edit Patient</h2>
+                    <hr />
+                    <form className="space-y-4">
 
                         <div className='flex gap-4 flex-col md:flex-row justify-center md:justify-between items-center'>
                             {/* Name */}
@@ -43,10 +21,7 @@ const AddPatientForm = () => {
                                 <input
                                     type="text"
                                     name="name"
-                                    value={formData.name}
-                                    onChange={handleChange}
-                                    placeholder='Patient Name'
-                                    required
+                                    value="Daniel Smith"                                    
                                     className="mt-1 p-2 py-3 block w-full border border-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                 />
                             </div>
@@ -57,10 +32,7 @@ const AddPatientForm = () => {
                                 <input
                                     type="date"
                                     name="dob"
-                                    value={formData.dob}
-                                    onChange={handleChange}
-                                    placeholder='Patient DOB'
-                                    required
+                                    placeholder="19-Nov-2001"
                                     className="mt-1 p-2 block w-full border border-gray-100 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                 />
                             </div>
@@ -73,10 +45,7 @@ const AddPatientForm = () => {
                                 <input
                                     type="number"
                                     name="age"
-                                    value={formData.age}
-                                    onChange={handleChange}
-                                    placeholder='Patient Age'
-                                    required
+                                    value="23"                                    
                                     className="mt-1 p-2 block w-full border border-gray-100 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                 />
                             </div>
@@ -87,10 +56,7 @@ const AddPatientForm = () => {
                                 <input
                                     type="tel"
                                     name="phone"
-                                    value={formData.phone}
-                                    onChange={handleChange}
-                                    placeholder='Patient Number'
-                                    required
+                                    value="90345 67890"                                    
                                     className="mt-1 p-2 block w-full border border-gray-100 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                 />
                             </div>
@@ -103,10 +69,7 @@ const AddPatientForm = () => {
                                 <input
                                     type="email"
                                     name="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    placeholder='Patient Email'
-                                    required
+                                    value="email@gmail.com"                                    
                                     className="mt-1 p-2 block w-full border border-gray-100 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                 />
                             </div>
@@ -116,16 +79,11 @@ const AddPatientForm = () => {
                                 <label className="font-bold block text-sm text-gray-500">Gender</label>
                                 <select
                                     name="gender"
-                                    value={formData.gender}
-                                    onChange={handleChange}
-                                    placeholder='Gender'
-                                    required
                                     className="mt-1 p-2 block w-full border border-gray-100 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                 >
-                                    <option value="">Select Gender</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                    <option value="other">Other</option>
+                                    <option value="male">Male</option>                                    
+                                    <option value="female">Female</option>                                    
+                                    <option value="other">Other</option>                                    
                                 </select>
                             </div>
                         </div>
@@ -135,10 +93,7 @@ const AddPatientForm = () => {
                             <label className="font-bold block text-sm text-gray-500">Address</label>
                             <textarea
                                 name="address"
-                                value={formData.address}
-                                onChange={handleChange}
-                                placeholder='Patient Address'
-                                required
+                                value="Koramangala Banglore, India"                                
                                 className="mt-1 p-2 block w-full h-28 border border-gray-100 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                             ></textarea>
                         </div>
@@ -148,8 +103,6 @@ const AddPatientForm = () => {
                             <label className="font-bold block text-sm text-gray-500">File</label>
                             <input
                                 type="file"
-                                name="file"
-                                onChange={handleChange}
                                 className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file file:border border-none file:text-sm file:font-medium file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100"
                             />
                         </div>
@@ -159,12 +112,10 @@ const AddPatientForm = () => {
                             <input
                                 type="checkbox"
                                 name="confirm"
-                                checked={formData.confirm}
-                                onChange={handleChange}
-                                required
+                                value=""                                
                                 className="h-4 w-4 text-indigo-600 border border-gray-100 py-3 rounded focus:ring-indigo-500"
                             />
-                            <label className="ml-2 text-gray-500 text-xs md:text-sm">I confirm that the above information is correct</label>
+                            <label className="ml-2 text-gray-500 text-xs md:text-sm">Please Confirm</label>
                         </div>
 
                         {/* Submit Button */}
@@ -172,13 +123,13 @@ const AddPatientForm = () => {
                             type="submit"
                             className="bg-[#e57498] text-white py-2 px-5 rounded-md shadow-md hover:bg-[#f281a5] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                         >
-                            Submit
+                            Update
                         </button>
                     </form>
                 </div>
             </div>
-        </>
-    );
-};
+        </div>
+    )
+}
 
-export default AddPatientForm;
+export default editPatient
