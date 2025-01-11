@@ -3,16 +3,16 @@ import { useRef, useState, useEffect } from "react";
 import jsPDF from "jspdf";
 import * as XLSX from "xlsx";
 import Navbar from '@/components/Navbar';
-import { Table_data } from "@/lib/data";
+import { doctors_data } from "@/lib/data";
 
-const AllPatients = () => {
+const allDoctors = () => {
 
     const tableRef = useRef(null);
 
-    const [rowsPerPage, setRowsPerPage] = useState(5); 
+    const [rowsPerPage, setRowsPerPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(1);
     const [searchQuery, setSearchQuery] = useState("");
-    const [filteredRows, setFilteredRows] = useState(Table_data);
+    const [filteredRows, setFilteredRows] = useState(doctors_data);
 
     // Handle export logic
     const handleExport = (e) => {
@@ -65,22 +65,20 @@ const AllPatients = () => {
     // Filter rows based on search query
     useEffect(() => {
         const lowerCaseQuery = searchQuery.toLowerCase();
-        const filteredData = Table_data.filter((row) =>
+        const filteredData = doctors_data.filter((row) =>
             row.name.toLowerCase().includes(lowerCaseQuery)
         );
         setFilteredRows(filteredData);
-        setCurrentPage(1); 
+        setCurrentPage(1);
     }, [searchQuery]);
 
     // Function to dynamically assign CSS class based on status
-    const getStatusClass = (status) => {
-        switch (status.toLowerCase()) {
-            case "completed":
+    const getStatusClass = (availability) => {
+        switch (availability.toLowerCase()) {
+            case "available":
                 return "bg-green-500";
-            case "pending":
+            case "on leave":
                 return "bg-yellow-500";
-            case "scheduled":
-                return "bg-blue-500";
             default:
                 return "bg-red-500";
         }
@@ -89,12 +87,12 @@ const AllPatients = () => {
 
     return (
         <div>
-            <Navbar title={"Patients"} path={" / Patients / All Patients"} />
+            <Navbar title={"Doctors"} path={" / Doctors / All Doctors"} />
             <div className='mt-4 md:mt-16 p-2 md:p-6'>
                 <div className="flex justify-center items-center p-2 md:p-0">
                     <div className="bg-white w-full relative overflow-x-auto shadow-md py-4 p-2 md:p-6 mt-6 md:mt-8">
                         <div className='flex flex-col md:flex-row items-center justify-center md:justify-between py-4 md:py-0 mb-2'>
-                            <h1 className="text-2xl text-pink-500 mb-4">Patients List</h1>
+                            <h1 className="text-2xl text-pink-500 mb-4">Doctors List</h1>
                             <div className='flex gap-2 items-center'>
                                 <h1 className='text-gray-500'>Export:</h1>
                                 <select
@@ -142,12 +140,12 @@ const AllPatients = () => {
                             <thead className="text-sm font-semibold shadow-md border border-b-gray-500 bg-white text-gray-700 border-b border-gray-300">
                                 <tr>
                                     <th className="px-3 py-3 border-r border-gray-300"></th>
-                                    <th className="px-3 py-3 border-r border-gray-300">Patient ID</th>
-                                    <th className="px-3 py-3 border-r border-gray-300">Patient Name</th>
-                                    <th className="px-3 py-3 border-r border-gray-300">Age</th>
+                                    <th className="px-3 py-3 border-r border-gray-300">Doctor ID</th>
+                                    <th className="px-3 py-3 border-r border-gray-300">Doctor Name</th>
+                                    <th className="px-3 py-3 border-r border-gray-300">Experience</th>
                                     <th className="px-3 py-3 border-r border-gray-300">Phone</th>
-                                    <th className="px-3 py-3 border-r border-gray-300">Last Visit</th>
-                                    <th className="px-3 py-3 border-r border-gray-300">Status</th>
+                                    <th className="px-3 py-3 border-r border-gray-300">Specialization</th>
+                                    <th className="px-3 py-3 border-r border-gray-300">Availabilty</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -158,12 +156,12 @@ const AllPatients = () => {
                                         </td>
                                         <td className="px-3 py-4 border-r border-gray-300">{item.id}</td>
                                         <td className="px-3 py-4 border-r border-gray-300">{item.name}</td>
-                                        <td className="px-3 py-4 border-r border-gray-300">{item.age}</td>
+                                        <td className="px-3 py-4 border-r border-gray-300">{item.experience}</td>
                                         <td className="px-3 py-4 border-r border-gray-300">{item.phone}</td>
-                                        <td className="px-3 py-4 border-r border-gray-300">{item.lastvisit}</td>
+                                        <td className="px-3 py-4 border-r border-gray-300">{item.specialization}</td>
                                         <td className="px-3 py-4">
-                                            <span className={`px-3 py-1 text-white text-xs font-semibold ${getStatusClass(item.status)}`}>
-                                                {item.status}
+                                            <span className={`px-3 py-1 text-white text-xs font-semibold ${getStatusClass(item.availability)}`}>
+                                                {item.availability}
                                             </span>
                                         </td>
                                     </tr>
@@ -205,7 +203,7 @@ const AllPatients = () => {
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default AllPatients;
+export default allDoctors

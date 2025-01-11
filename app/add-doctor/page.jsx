@@ -1,9 +1,8 @@
 "use client"
-import Navbar from '@/components/Navbar';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import Navbar from '@/components/Navbar'
 
-
-const editPatient = () => {
+const addDoctor = () => {
 
     const [formData, setFormData] = useState({
         name: '',
@@ -13,6 +12,8 @@ const editPatient = () => {
         email: '',
         gender: '',
         address: '',
+        specialization:'',
+        experience:'',
         file: null,
         confirm: false,
     });
@@ -25,25 +26,26 @@ const editPatient = () => {
         });
     };
 
+
     return (
         <div>
-            <Navbar title={"Edit Patient"} path={" / Patients / Edit Patient"} />
-
+            <Navbar title={"Add Doctor"} path={"/ Doctors / Add Doctors"} />
             <div className='mt-4 md:mt-16 p-2 md:p-6'>
                 <div className="w-full mx-auto bg-white p-6 rounded-sm shadow-md">
-                    <h2 className="text-2xl text-pink-500 mb-4">Edit Patient</h2>
-                    <hr />
+                    <h2 className="text-2xl text-pink-500 mb-4">Add Doctor</h2>
                     <form className="space-y-4">
 
                         <div className='flex gap-4 flex-col md:flex-row justify-center md:justify-between items-center'>
                             {/* Name */}
                             <div className='flex-1 w-full'>
-                                <label className="font-bold block text-sm text-gray-500">Patient Name</label>
+                                <label className="font-bold block text-sm text-gray-500">Doctor Name</label>
                                 <input
                                     type="text"
                                     name="name"
-                                    value="Daniel Smith"
+                                    value={formData.name}
                                     onChange={handleChange}
+                                    placeholder='Doctor Name'
+                                    required
                                     className="mt-1 p-2 py-3 block w-full border border-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                 />
                             </div>
@@ -54,11 +56,44 @@ const editPatient = () => {
                                 <input
                                     type="date"
                                     name="dob"
-                                    placeholder="19-Nov-2001"
+                                    value={formData.dob}
+                                    onChange={handleChange}
+                                    placeholder='Patient DOB'
+                                    required
                                     className="mt-1 p-2 block w-full border border-gray-100 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                 />
                             </div>
                         </div>
+
+                        <div className='flex gap-4 flex-col md:flex-row justify-center md:justify-between items-center'>
+                            {/* Specialization */}
+                            <div className='flex-1 w-full'>
+                                <label className="font-bold block text-sm text-gray-500">Specialization</label>
+                                <input
+                                    type="text"
+                                    name="Specialization"
+                                    value={formData.specialization}
+                                    onChange={handleChange}
+                                    placeholder='Specialization'
+                                    required
+                                    className="mt-1 p-2 block w-full border border-gray-100 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                />
+                            </div>
+
+                            {/* Experience */}
+                            <div className='flex-1 w-full'>
+                                <label className="font-bold block text-sm text-gray-500">Experience</label>
+                                <input
+                                    type="text"
+                                    value={formData.experience}
+                                    onChange={handleChange}
+                                    placeholder='Experience'
+                                    required
+                                    className="mt-1 p-2 block w-full border border-gray-100 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                />
+                            </div>
+                        </div>
+
 
                         <div className='flex gap-4 flex-col md:flex-row justify-center md:justify-between items-center'>
                             {/* Age */}
@@ -67,8 +102,10 @@ const editPatient = () => {
                                 <input
                                     type="number"
                                     name="age"
-                                    value="23"
+                                    value={formData.age}
                                     onChange={handleChange}
+                                    placeholder='Patient Age'
+                                    required
                                     className="mt-1 p-2 block w-full border border-gray-100 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                 />
                             </div>
@@ -79,8 +116,10 @@ const editPatient = () => {
                                 <input
                                     type="tel"
                                     name="phone"
-                                    value="90345 67890"
+                                    value={formData.phone}
                                     onChange={handleChange}
+                                    placeholder='Patient Number'
+                                    required
                                     className="mt-1 p-2 block w-full border border-gray-100 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                 />
                             </div>
@@ -93,8 +132,10 @@ const editPatient = () => {
                                 <input
                                     type="email"
                                     name="email"
-                                    value="email@gmail.com"
+                                    value={formData.email}
                                     onChange={handleChange}
+                                    placeholder='Patient Email'
+                                    required
                                     className="mt-1 p-2 block w-full border border-gray-100 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                 />
                             </div>
@@ -104,25 +145,46 @@ const editPatient = () => {
                                 <label className="font-bold block text-sm text-gray-500">Gender</label>
                                 <select
                                     name="gender"
+                                    value={formData.gender}
                                     onChange={handleChange}
+                                    placeholder='Gender'
+                                    required
                                     className="mt-1 p-2 block w-full border border-gray-100 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                 >
-                                    <option value="male">Male</option>                                    
-                                    <option value="female">Female</option>                                    
-                                    <option value="other">Other</option>                                    
+                                    <option value="">Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
                                 </select>
                             </div>
                         </div>
 
-                        {/* Address */}
-                        <div className='w-full'>
-                            <label className="font-bold block text-sm text-gray-500">Address</label>
-                            <textarea
-                                name="address"
-                                value="Koramangala Banglore, India"
-                                onChange={handleChange}
-                                className="mt-1 p-2 block w-full h-28 border border-gray-100 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                            ></textarea>
+                        <div className='flex gap-4 flex-col md:flex-row justify-center md:justify-between items-center'>
+                            {/* Doctor Details */}
+                            <div className='flex-1 w-full'>
+                                <label className="font-bold block text-sm text-gray-500">Doctor Details</label>
+                                <textarea
+                                    name="Doctor Details"
+                                    value={formData.address}
+                                    onChange={handleChange}
+                                    placeholder='Doctor Details'
+                                    required
+                                    className="mt-1 p-2 block w-full h-28 border border-gray-100 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                ></textarea>
+                            </div>
+
+                            {/* Address */}
+                            <div className='flex-1 w-full'>
+                                <label className="font-bold block text-sm text-gray-500">Address</label>
+                                <textarea
+                                    name="address"
+                                    value={formData.address}
+                                    onChange={handleChange}
+                                    placeholder='Patient Address'
+                                    required
+                                    className="mt-1 p-2 block w-full h-28 border border-gray-100 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                ></textarea>
+                            </div>
                         </div>
 
                         {/* File Upload */}
@@ -130,6 +192,8 @@ const editPatient = () => {
                             <label className="font-bold block text-sm text-gray-500">File</label>
                             <input
                                 type="file"
+                                name="file"
+                                onChange={handleChange}
                                 className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file file:border border-none file:text-sm file:font-medium file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100"
                             />
                         </div>
@@ -139,8 +203,9 @@ const editPatient = () => {
                             <input
                                 type="checkbox"
                                 name="confirm"
-                                value=""
+                                checked={formData.confirm}
                                 onChange={handleChange}
+                                required
                                 className="h-4 w-4 text-indigo-600 border border-gray-100 py-3 rounded focus:ring-indigo-500"
                             />
                             <label className="ml-2 text-gray-500 text-xs md:text-sm">Please Confirm</label>
@@ -151,7 +216,7 @@ const editPatient = () => {
                             type="submit"
                             className="bg-[#e57498] text-white py-2 px-5 rounded-md shadow-md hover:bg-[#f281a5] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                         >
-                            Update
+                            Submit
                         </button>
                     </form>
                 </div>
@@ -160,4 +225,4 @@ const editPatient = () => {
     )
 }
 
-export default editPatient
+export default addDoctor
