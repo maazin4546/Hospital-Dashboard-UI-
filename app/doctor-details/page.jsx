@@ -1,7 +1,6 @@
 import Navbar from '@/components/Navbar';
 import { doctor_details } from '@/lib/data';
 import Image from 'next/image';
-import React from 'react'
 
 const doctorDetails = () => {
     return (
@@ -26,7 +25,7 @@ const doctorDetails = () => {
 
                         <table className="table-auto overflow-x-auto w-auto md:w-[680px] h-[300px] border border-gray-300">
                             <tbody>
-                                <tr className="border border-gray-300">
+                                <tr className="border bg-gray-100 border-gray-300">
                                     <th className="px-4 py-2 border border-gray-300 text-left">Name</th>
                                     <td className="px-4 py-2 border border-gray-300">Daniel Smith</td>
                                 </tr>
@@ -34,7 +33,7 @@ const doctorDetails = () => {
                                     <th className="px-4 py-2 border border-gray-300 text-left">Date of Birth</th>
                                     <td className="px-4 py-2 border border-gray-300">26-10-1989</td>
                                 </tr>
-                                <tr className="border border-gray-300">
+                                <tr className="border bg-gray-100 border-gray-300">
                                     <th className="px-4 py-2 border border-gray-300 text-left">Gender</th>
                                     <td className="px-4 py-2 border border-gray-300">Male</td>
                                 </tr>
@@ -42,7 +41,7 @@ const doctorDetails = () => {
                                     <th className="px-4 py-2 border border-gray-300 text-left">Address</th>
                                     <td className="px-4 py-2 border border-gray-300">Koramangala Banglore, India</td>
                                 </tr>
-                                <tr className="border border-gray-300">
+                                <tr className="border bg-gray-100 border-gray-300">
                                     <th className="px-4 py-2 border border-gray-300 text-left">Phone</th>
                                     <td className="px-4 py-2 border border-gray-300">+91 11111 11111</td>
                                 </tr>
