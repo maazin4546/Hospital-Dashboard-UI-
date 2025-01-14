@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 const addAppointment = () => {
 
     const [formData, setFormData] = useState({
+        patient_id: '',
         name: '',
         dob: '',
         age: '',
@@ -12,6 +13,7 @@ const addAppointment = () => {
         email: '',
         gender: '',
         address: '',
+        token: '',
         file: null,
         confirm: false,
     });
@@ -38,12 +40,13 @@ const addAppointment = () => {
                     <form onSubmit={handleSubmit} className="space-y-4">
 
                         <div className='flex gap-4 flex-col md:flex-row justify-center md:justify-between items-center'>
-                            {/* Name */}
+                            {/* patient_id */}
                             <div className='flex-1 w-full'>
                                 <label className="font-bold block text-sm text-gray-500">Patient ID</label>
                                 <input
                                     type="text"
-                                    name="name"
+                                    name="patient_id"
+                                    value={formData.patient_id}
                                     onChange={handleChange}
                                     placeholder='Patient ID'
                                     required
@@ -61,7 +64,7 @@ const addAppointment = () => {
                                     placeholder='Department'
                                     required
                                     className="mt-1 p-2 block w-full border border-gray-100 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                >                                    
+                                >
                                     <option value="male">Neuro</option>
                                     <option value="female">Ortho</option>
                                     <option value="other">General</option>
@@ -119,6 +122,8 @@ const addAppointment = () => {
                                 <input
                                     type="tel"
                                     name="token"
+                                    value={formData.token}
+                                    onChange={handleChange}
                                     placeholder='Auto Generated'
                                     required
                                     className="mt-1 p-2 block w-full border border-gray-100 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"

@@ -5,13 +5,17 @@ import React, { useState } from 'react';
 const addPayment = () => {
 
     const [formData, setFormData] = useState({
+        patient_Id:'',
         name: '',
+        doc_name:'',
         dob: '',
-        age: '',
-        phone: '',
-        email: '',
-        gender: '',
-        address: '',
+        discharge_date:'',
+        service_name:'',
+        cost_treatment:'',
+        discount:'',
+        advance_paid:'',
+        card_no:'',
+        gender: '',        
         file: null,
         confirm: false,
     });
@@ -43,8 +47,9 @@ const addPayment = () => {
                             <div className='flex-1 w-full'>
                                 <label className="font-bold block text-sm text-gray-500">Patient ID</label>
                                 <input
-                                    type="text"
-                                    name="name"
+                                    type="tel"
+                                    name="patient_Id"
+                                    value={formData.patient_Id}
                                     onChange={handleChange}
                                     placeholder='Patient ID'
                                     required
@@ -58,6 +63,7 @@ const addPayment = () => {
                                 <input
                                     type="text"
                                     name="name"
+                                    value={formData.name}
                                     onChange={handleChange}
                                     placeholder='Patient Name'
                                     required
@@ -91,8 +97,8 @@ const addPayment = () => {
                                 <label className="font-bold block text-sm text-gray-500"> Doctor Name</label>
                                 <input
                                     type="text"
-                                    name="name"
-                                    value={formData.name}
+                                    name="doc_name"
+                                    value={formData.doc_name}
                                     onChange={handleChange}
                                     placeholder='Doctor Name'
                                     required
@@ -116,15 +122,14 @@ const addPayment = () => {
                                 />
                             </div>
 
-                            {/* Cost of Treatment */}
+                            {/* discharge_date */}
                             <div className='flex-1 w-full'>
-                                <label className="font-bold block text-sm text-gray-500">Cost of Treatment</label>
+                                <label className="font-bold block text-sm text-gray-500">Discharge Date</label>
                                 <input
                                     type="date"
-                                    name="dob"
-                                    value={formData.dob}
+                                    name="discharge_date"
+                                    value={formData.discharge_date}
                                     onChange={handleChange}
-                                    placeholder='Cost of Treatment'
                                     required
                                     className="mt-1 p-2 block w-full border border-gray-100 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                 />
@@ -141,8 +146,8 @@ const addPayment = () => {
                                     <label className="font-bold block text-sm text-gray-500">Service Name</label>
                                     <input
                                         type="text"
-                                        name="dob"
-                                        value={formData.name}
+                                        name="service_name"
+                                        value={formData.service_name}
                                         onChange={handleChange}
                                         placeholder='Service Name'
                                         required
@@ -155,8 +160,8 @@ const addPayment = () => {
                                     <label className="font-bold block text-sm text-gray-500">Cost of Treatment</label>
                                     <input
                                         type="tel"
-                                        name="dob"
-                                        value={formData.age}
+                                        name="cost_treatment"
+                                        value={formData.cost_treatment}
                                         onChange={handleChange}
                                         placeholder='Cost of Treatment'
                                         required
@@ -169,6 +174,7 @@ const addPayment = () => {
 
                         </div>
 
+                        {/* Payment */}
                         <div>
                             <h1 className='text-3xl text-blue-950 bg-gray-100 p-1 my-6'>Payment</h1>
                             <div className='px-3 flex gap-4 flex-col md:flex-row justify-center md:justify-between items-center'>
@@ -178,7 +184,8 @@ const addPayment = () => {
                                     <label className="font-bold block text-sm text-gray-500">Discount (%)</label>
                                     <input
                                         type="tel"
-                                        value={formData.name}
+                                        name='discount'
+                                        value={formData.discount}
                                         onChange={handleChange}
                                         placeholder='Discount'
                                         required
@@ -191,8 +198,8 @@ const addPayment = () => {
                                     <label className="font-bold block text-sm text-gray-500">Advance Paid</label>
                                     <input
                                         type="tel"
-                                        name="dob"
-                                        value={formData.age}
+                                        name="advance_paid"
+                                        value={formData.advance_paid}
                                         onChange={handleChange}
                                         placeholder='Advance Paid'
                                         required
@@ -222,8 +229,8 @@ const addPayment = () => {
                                     <label className="font-bold block text-sm text-gray-500">Card/Check No</label>
                                     <input
                                         type="text"
-                                        name="dob"
-                                        value={formData.name}
+                                        name="card_no"
+                                        value={formData.card_no}
                                         onChange={handleChange}
                                         placeholder='Card/Check No'
                                         required

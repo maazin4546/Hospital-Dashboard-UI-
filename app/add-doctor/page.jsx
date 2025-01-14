@@ -13,6 +13,7 @@ const addDoctor = () => {
         gender: '',
         address: '',
         specialization:'',
+        doc_details:'',
         experience:'',
         file: null,
         confirm: false,
@@ -71,7 +72,7 @@ const addDoctor = () => {
                                 <label className="font-bold block text-sm text-gray-500">Specialization</label>
                                 <input
                                     type="text"
-                                    name="Specialization"
+                                    name="specialization"
                                     value={formData.specialization}
                                     onChange={handleChange}
                                     placeholder='Specialization'
@@ -85,6 +86,7 @@ const addDoctor = () => {
                                 <label className="font-bold block text-sm text-gray-500">Experience</label>
                                 <input
                                     type="text"
+                                    name='experience'
                                     value={formData.experience}
                                     onChange={handleChange}
                                     placeholder='Experience'
@@ -164,8 +166,8 @@ const addDoctor = () => {
                             <div className='flex-1 w-full'>
                                 <label className="font-bold block text-sm text-gray-500">Doctor Details</label>
                                 <textarea
-                                    name="Doctor Details"
-                                    value={formData.address}
+                                    name="doc_details"
+                                    value={formData.doc_details}
                                     onChange={handleChange}
                                     placeholder='Doctor Details'
                                     required
