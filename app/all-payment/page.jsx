@@ -1,19 +1,18 @@
 "use client"
-import { Appointment_Details } from '@/lib/data'
 import { useRef, useState, useEffect } from "react";
 import jsPDF from "jspdf";
 import * as XLSX from "xlsx";
 import Navbar from '@/components/Navbar';
+import { Payment_Data } from "@/lib/data";
 
-
-const allAppointment = () => {
+const allPayment = () => {
 
     const tableRef = useRef(null);
 
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(1);
     const [searchQuery, setSearchQuery] = useState("");
-    const [filteredRows, setFilteredRows] = useState(Appointment_Details);
+    const [filteredRows, setFilteredRows] = useState(Payment_Data);
 
     // Handle export logic
     const handleExport = (e) => {
@@ -67,7 +66,7 @@ const allAppointment = () => {
     useEffect(() => {
         const lowerCaseQuery = searchQuery.toLowerCase();
 
-        const filteredData = Appointment_Details.filter(row =>
+        const filteredData = Payment_Data.filter(row =>
         (row.doctorName?.toLowerCase().includes(lowerCaseQuery) ||
             row.patientId?.toLowerCase().includes(lowerCaseQuery) ||
             row.appointmentId?.toLowerCase().includes(lowerCaseQuery))
@@ -77,15 +76,29 @@ const allAppointment = () => {
         setCurrentPage(1);
     }, [searchQuery]);
 
+    // Function to dynamically assign CSS class based on status
+    const getStatusClass = (status) => {
+        switch (status?.toLowerCase()) {
+            case "completed":
+                return "bg-green-500";
+            case "pending":
+                return "bg-yellow-500";
+            case "scheduled":
+                return "bg-blue-500";
+            default:
+                return "bg-red-500";
+        }
+    };
+
 
     return (
         <div>
-            <Navbar title={"Appointments"} path={" / Doctors / Appointment List"} />
+            <Navbar title={"Payments"} path={" / Payments / All Payments"} />
             <div className='mt-4 md:mt-16 p-2 md:p-6'>
                 <div className="flex justify-center items-center p-2 md:p-0">
                     <div className="bg-white w-full relative overflow-x-auto shadow-md py-4 p-2 md:p-6 mt-6 md:mt-8">
                         <div className='flex flex-col md:flex-row items-center justify-center md:justify-between py-4 md:py-0 mb-2'>
-                            <h1 className="text-2xl text-pink-500 mb-4">Appointments List</h1>
+                            <h1 className="text-2xl text-pink-500 mb-4">Payments List</h1>
                             <div className='flex gap-2 items-center'>
                                 <h1 className='text-gray-500'>Export:</h1>
                                 <select
@@ -121,7 +134,7 @@ const allAppointment = () => {
                                 <label className="font-bold block text-sm text-gray-500">Search:</label>
                                 <input
                                     type="search"
-                                    placeholder="Search By Name"
+                                    placeholder="By Doctor Name"
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                     className="mt-1 p-2 block w-full border border-gray-300 py-2 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -133,11 +146,11 @@ const allAppointment = () => {
                             <thead className="text-sm font-semibold shadow-md border border-b-gray-500 bg-white text-gray-700 border-b border-gray-300">
                                 <tr>
                                     <th className="px-3 py-3 border-r border-gray-300"></th>
-                                    <th className="px-3 py-3 border-r border-gray-300">Appointment ID</th>
-                                    <th className="px-3 py-3 border-r border-gray-300">Patient ID</th>
-                                    <th className="px-3 py-3 border-r border-gray-300">Token Number</th>
+                                    <th className="px-3 py-3 border-r border-gray-300">Patient Name</th>
                                     <th className="px-3 py-3 border-r border-gray-300">Doctor Name</th>
-                                    <th className="px-3 py-3 border-r border-gray-300">Problem</th>
+                                    <th className="px-3 py-3 border-r border-gray-300">Service Name</th>
+                                    <th className="px-3 py-3 border-r border-gray-300">Charges</th>
+                                    <th className="px-3 py-3 border-r border-gray-300">Discount</th>
                                     <th className="px-3 py-3 border-r border-gray-300">Status</th>
                                 </tr>
                             </thead>
@@ -147,13 +160,13 @@ const allAppointment = () => {
                                         <td className="px-3 py-4 border-r border-gray-300">
                                             <input type="checkbox" className="h-4 w-4 text-indigo-600" />
                                         </td>
-                                        <td className="px-3 py-4 border-r border-gray-300">{item.appointmentId}</td>
-                                        <td className="px-3 py-4 border-r border-gray-300">{item.patientId}</td>
-                                        <td className="px-3 py-4 border-r border-gray-300">{item.tokenNumber}</td>
+                                        <td className="px-3 py-4 border-r border-gray-300">{item.patientName}</td>
                                         <td className="px-3 py-4 border-r border-gray-300">{item.doctorName}</td>
-                                        <td className="px-3 py-4 border-r border-gray-300">{item.problem}</td>
+                                        <td className="px-3 py-4 border-r border-gray-300">{item.serviceName}</td>
+                                        <td className="px-3 py-4 border-r border-gray-300">{item.charges}</td>
+                                        <td className="px-3 py-4 border-r border-gray-300">{item.discount}</td>
                                         <td className="px-3 py-4">
-                                            <span className={`px-3 py-1 text-white text-xs font-semibold ${item.status == "Active" ? "bg-green-500" : "bg-yellow-500"}`}>
+                                            <span className={`px-3 py-1 text-white text-xs font-semibold ${getStatusClass(item.status)}`}>
                                                 {item.status}
                                             </span>
                                         </td>
@@ -195,8 +208,8 @@ const allAppointment = () => {
                     </div>
                 </div>
             </div>
-        </div >
-    )
-}
+        </div>
+    );
+};
 
-export default allAppointment
+export default allPayment;

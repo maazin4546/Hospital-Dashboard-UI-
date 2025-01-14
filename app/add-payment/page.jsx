@@ -250,7 +250,7 @@ const addPayment = () => {
                         {/* Submit Button */}
                         <button
                             type="submit"
-                            className="bg-[#e57498] text-white py-2 px-5 rounded-md shadow-md hover:bg-[#f281a5] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            className="bg-[#e57498] text-white text-lg py-1 px-5 rounded-md shadow-md hover:bg-[#f281a5] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                         >
                             Submit
                         </button>
